@@ -1,7 +1,6 @@
-package agh.cs.lab2;
+package agh.cs.lab;
 
-import agh.cs.lab2.Position;
-import org.junit.Assert;
+import agh.cs.lab.Position;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
