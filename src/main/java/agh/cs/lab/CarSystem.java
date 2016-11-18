@@ -7,20 +7,22 @@ import java.util.List;
 public class CarSystem {
     public static void main(String[] args) {
         OptionsParser parser = new OptionsParser();
-        String[] options = new String[4];
-        options[0] = "right";
-        options[1] = "f";
-        options[2] = "forward";
-        options[3] = "forward";
+        String[] options = "f b r l f f r r f f f f f f f f".split("\\s");
         List<MoveDirection> directions = parser.parse(options);
-        Car car = new Car();
+        System.out.println(directions.size());
+        RectangularMap map = new RectangularMap(10,5);
+        System.out.println(map);
+        map.add(new Car(map));
+        map.add(new Car(map, 3,4));
+        System.out.println(map);
+        map.run(directions.toArray(new MoveDirection[]{}));
+        System.out.println(map);
+        /*
         for(MoveDirection direction : directions) {
             car.move(direction);
             System.out.println(car);
+            System.out.println(map);
         }
-        System.out.println(new String("a").equals("a"));
-        System.out.println(Arrays.equals(new String[]{"a"}, new String[]{"a"}));
-
-
+        */
     }
 }

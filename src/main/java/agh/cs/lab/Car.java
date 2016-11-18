@@ -1,28 +1,45 @@
 package agh.cs.lab;
 
-public class Car {
-    private MapDirection orientation = MapDirection.North;
-    private Position position = new Position(2,2);
+public class Car implements IMapElement {
+    private MapDirection orientation;
+    private Position position;
+    private final IWorldMap map;
 
-    private final static Position SWBound = new Position(0,0);
-    private final static Position NEBound = new Position(4,4);
     @Override
     public String toString() {
-        return "Car position: " + position + " orientation: " + orientation;
+        switch(orientation) {
+            case North:
+                return "^";
+            case South:
+                return "v";
+            case West:
+                return "<";
+            case East:
+                return ">";
+        }
+        return null;
     }
 
-    public void move(MoveDirection direction) {
-        switch(direction) {
-            case Forward: run(1);
-                break;
-            case Backward: run(-1);
-                break;
-            case Right: orientation = orientation.next();
-                return;
-            case Left: orientation = orientation.previous();
-                return;
-        }
+    public Car(IWorldMap map, int x, int y) {
+        this.orientation = MapDirection.North;
+        this.position = new Position(x,y);
+        this.map = map;
+    }
 
+    public Car(IWorldMap map) {
+        this(map, 0, 0);
+    }
+
+    public boolean move(MoveDirection direction) {
+        switch(direction) {
+            case Forward: return run(1);
+            case Backward: return run(-1);
+            case Right: orientation = orientation.next();
+                return true;
+            case Left: orientation = orientation.previous();
+                return true;
+        }
+        return false;
     }
 
     public MapDirection getOrientation() {
@@ -33,21 +50,25 @@ public class Car {
         return position;
     }
 
-    public void run(int distance) {
+    public boolean run(int distance) {
         Position newPosition = new Position(0,0);
 
         switch(orientation) {
-            case North: newPosition = position.add(new Position(distance, 0));
+            case North: newPosition = position.add(new Position(0, distance));
                 break;
-            case South: newPosition = position.add(new Position(-distance, 0));
+            case South: newPosition = position.add(new Position(0, -distance));
                 break;
-            case East: newPosition = position.add(new Position(0, distance));
+            case East: newPosition = position.add(new Position(distance, 0));
                 break;
-            case West: newPosition = position.add(new Position(0, -distance));
+            case West: newPosition = position.add(new Position(-distance, 0));
                 break;
         }
-        if(SWBound.smaller(newPosition) && newPosition.smaller(NEBound)) {
+        if(map.canMoveTo(newPosition)) {
             position = newPosition;
+            return true;
+        }
+        else {
+            return false;
         }
 
 

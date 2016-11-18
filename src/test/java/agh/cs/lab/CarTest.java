@@ -2,6 +2,8 @@ package agh.cs.lab;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.*;
@@ -9,6 +11,7 @@ import static org.junit.Assert.*;
 /**
  * Created by grosz on 04.11.2016.
  */
+/*
 public class CarTest {
 
     @Test
@@ -47,8 +50,8 @@ public class CarTest {
     }
 
     @Test
-    public void testLeftTurn() throws Exception {
-
-
+    public void testLeftTurns() throws Exception {
+        //TODO
     }
-}
+
+}*/
