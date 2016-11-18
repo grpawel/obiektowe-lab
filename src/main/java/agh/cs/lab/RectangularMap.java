@@ -26,6 +26,14 @@ public class RectangularMap extends AbstractWorldMap {
 
     }
 
+    protected Position getLowerLeft() {
+        return SWBound;
+    }
+
+    protected Position getUpperRight() {
+        return NEBound;
+    }
+
     public Object objectAt(Position position) {
         for (Car mapElement : mapElements) {
             if(mapElement.getPosition().equals(position)) {

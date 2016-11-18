@@ -47,8 +47,7 @@ public abstract class AbstractWorldMap implements IWorldMap {
         }
         return null;
     }
-
-    private abstract Position getLowerLeft();
-    private abstract Position getUpperRight();
+    protected abstract Position getLowerLeft();
+    protected abstract Position getUpperRight();
 
 }

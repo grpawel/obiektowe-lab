@@ -24,9 +24,10 @@ public class OptionsParser {
         List<MoveDirection> directions = new ArrayList<MoveDirection>();
         for (String option : options) {
             MoveDirection direction = optionToDirections.get(option);
-            if(direction != null) {
-                directions.add(direction);
+            if(direction == null) {
+                throw new IllegalArgumentException(option + " is not legal move specification");
             }
+            directions.add(direction);
         }
         return directions;
     }
